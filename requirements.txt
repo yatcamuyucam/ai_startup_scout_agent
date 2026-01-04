@@ -1,5 +1,7 @@
-streamlit
 crewai
+crewai-tools
+langchain-openai
 openai
 tavily-python
 python-dotenv
+streamlit
