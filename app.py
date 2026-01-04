@@ -57,7 +57,7 @@ with st.sidebar:
     
     sector = st.selectbox(
         "Target Industry Sector",
-        options=["HealthTech", "Fintech", "Sports", "B2B SaaS", "Logistics / Supply Chain", "Cybersecurity", "Sustainability", "E-commerce"],
+        options=["HealthTech", "Fintech", "Sports", "B2B SaaS", "Logistics / Supply Chain", "Cybersecurity", "Sustainability",],
         help="Ajanlar bu sektöre odaklanarak derinlemesine araştırma yapacak."
     )
     
