@@ -57,7 +57,7 @@ with st.sidebar:
     
     sector = st.selectbox(
         "Target Industry Sector",
-        options=["Healthcare", "Finance", "Enterprise Software", "Retail", "Cybersecurity", "LegalTech"],
+        options=["HealthTech", "Fintech", "Sports", "B2B SaaS", "Logistics / Supply Chain", "Cybersecurity", "Sustainability", "E-commerce"],
         help="Ajanlar bu sektöre odaklanarak derinlemesine araştırma yapacak."
     )
     
@@ -80,13 +80,13 @@ if not run_button:
         st.write("")
         st.markdown("""
         ### Welcome to the Future of Market Research.
-        Bu sistem, **CrewAI** altyapısını kullanarak sizin yerinize interneti tarar, 
-        startup'ları sınıflandırır ve yatırım yapılabilirliği analiz eder.
+        Leveraging the **CrewAI** framework, this autonomous system scouts the web on your behalf, 
+        categorizes emerging startups, and evaluates their investment viability.
         
-        **Neler bekleyebilirsiniz?**
-        - 🔍 Gerçek zamanlı web taraması (Tavily AI)
-        - 📊 Disruption Score hesaplamaları
-        - 📄 Profesyonel yönetici raporu
+        **Key Capabilities:**
+        - 🔍 **Real-time Web Intelligence:** Powered by Tavily AI for precise data extraction.
+        - 📊 **Strategic Scoring:** Quantitative analysis including 'Disruption' and 'Confidence' scores.
+        - 📄 **Executive Reporting:** High-quality Markdown reports tailored for stakeholders.
         """)
     with col2:
         with st.expander("🛠️ System Architecture", expanded=True):
@@ -98,20 +98,31 @@ if not run_button:
             """)
 
 else:
-    # ÇALIŞMA ANI
+    # === AGENT ÇALIŞMA SÜRECİ (SEVİYE 1 UX) ===
     with st.status("🤖 Agents are collaborating...", expanded=True) as status:
-        st.write("🔍 **Discovery Agent:** Searching for emerging AI startups...")
-        # Simüle edilmiş veya gerçek loglar buraya gelebilir
-        
-        # Gerçek fonksiyonu çağırıyoruz
-        result = run(sector=sector)
-        
-        status.update(label="✅ Analysis Complete!", state="complete", expanded=False)
+        st.write("🔍 **Discovery Agent:** Scanning the web for AI-first startups...")
+        time.sleep(1)
 
-    # RAPOR ALANI
-    st.toast(f"{sector} analizi başarıyla tamamlandı!", icon='✅')
-    
-    # Header & Download
+        st.write("🧠 **Classification Agent:** Filtering and categorizing startups...")
+        time.sleep(1)
+
+        st.write("📊 **Insight Agent:** Evaluating disruption potential and moats...")
+        time.sleep(1)
+
+        st.write("📝 **Reporting Agent:** Synthesizing executive report...")
+        
+        # 🔥 Asıl ağır iş burada (blocking)
+        result = run(sector=sector)
+
+        status.update(
+            label="✅ Analysis Complete!",
+            state="complete",
+            expanded=False
+        )
+
+    # === RAPOR GÖSTERİMİ ===
+    st.toast(f"{sector} analysis completed successfully!", icon="✅")
+
     header_col, download_col = st.columns([3, 1])
     with header_col:
         st.subheader(f"📄 Executive Analysis Report: {sector}")
@@ -124,10 +135,7 @@ else:
             use_container_width=True
         )
 
-    # CANLI YAZDIRMA EFEKTİ (Daktilo Efekti)
     st.markdown("---")
-    with st.container():
-        # result verisini stream_text üzerinden akıtıyoruz
-        st.write_stream(stream_text(result))
 
-    st.balloons()
+    # Daktilo efekti (sadece final rapor)
+    st.write_stream(stream_text(result))

@@ -41,7 +41,6 @@ class StartupTasks:
             agent=agent
         )
 
-    # tasks.py içindeki report_task metodu
     def report_task(self, agent, sector):
         clean_name = sector.lower().replace(" ", "_")
         file_name = f"report_{clean_name}.md" 

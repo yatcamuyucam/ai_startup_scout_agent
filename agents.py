@@ -5,14 +5,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# 🔹 Model Seçimi: Dokümanında belirttiğin gpt-4o gücünü demo maliyeti için mini ile simüle ediyoruz.
-# Complex reasoning gereken yerlerde gpt-4o kullanımı stratejik bir tercihtir.
+# Model seçimi demo için kafi
 llm = ChatOpenAI(
     model="gpt-4o-mini", 
-    temperature=0.2 # Yaratıcılıktan ziyade tutarlılık ve analiz için düşük sıcaklık.
+    temperature=0.2 # Yaratıcılıktan ziyade tutarlı analiz için yeter 
 )
 
-# 🔍 Search Tool: Tavily, AI odaklı aramalarda standart Google'dan daha rafine sonuçlar verir.
+# Tavily, AI odaklı aramalarda standart Google'dan daha iyi
 search_tool = TavilySearchTool()
 
 class StartupAgents:
@@ -30,7 +29,7 @@ class StartupAgents:
             llm=llm,
             verbose=True,
             allow_delegation=False,
-            memory=True # Dokümanındaki 'Shared Memory' vurgusu için aktif.
+            memory=True # Dokümanındaki 'Shared Memory' 
         )
 
     def classification_agent(self):

@@ -21,7 +21,6 @@ def run(sector: str):
     agents_factory = StartupAgents()
     tasks_factory = StartupTasks()
 
-    # 4. Ajanları oluşturalım
     discovery_agent = agents_factory.discovery_agent()
     classification_agent = agents_factory.classification_agent()
     insight_agent = agents_factory.insight_agent()
@@ -48,7 +47,7 @@ def run(sector: str):
             insight,
             reporting
         ],
-        process=Process.sequential,  # Sıralı mantıksal akış
+        process=Process.sequential, # Sıralı mantıksal akış
         verbose=True,               # Reasoning sürecini terminalden izlemek için
         memory=True,                # Kısa süreli (context) hafıza
         cache=True                  # Tool-level cache (Aynı sorguları tekrar yapmaz)
